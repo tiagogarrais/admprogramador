@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import Link from "next/link";
 import { useSession, signOut, signIn } from "next-auth/react";
 import "./globals.css";
+import "./landing.css";
 
 function Header() {
   const { data: session } = useSession();
@@ -40,7 +41,7 @@ function Header() {
             fontWeight: "bold",
           }}
         >
-          Base para aplicativo web
+          AdmProgramador
         </Link>
 
         <nav>
@@ -119,7 +120,7 @@ function Footer() {
           fontSize: "14px",
         }}
       >
-        © 2025 Base para aplicativo web. Todos os direitos reservados.
+        © 2025 AdmProgramador. Todos os direitos reservados.
       </div>
     </footer>
   );

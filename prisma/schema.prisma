@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -37,7 +37,7 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(uuid())
+  id            String    @id @default(cuid())
   name          String?
   email         String?   @unique
   emailVerified DateTime?
@@ -48,7 +48,7 @@ model User {
 }
 
 model Usuario {
-  id                String   @id @default(uuid())
+  id                String   @id @default(cuid())
   userId            String   @unique // Relacionamento 1:1 com User
   fullName          String?  // Nome completo editável
   birthDate         DateTime? // Data de nascimento
