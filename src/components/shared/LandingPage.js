@@ -58,9 +58,9 @@ export default function LandingPage() {
 
         <p>
           Por isso, decidi ir além da análise:{" "}
-          <strong>aprendi a desenvolver sistemas sob medida</strong> — não por
-          paixão à tecnologia, mas por compromisso com a{" "}
-          <strong>eficiência da gestão</strong>.
+          <strong>aprendi a desenvolver sistemas sob medida</strong> por paixão
+          à tecnologia e compromisso com a <strong>eficiência da gestão</strong>
+          .
         </p>
 
         <div className="value-badges">
