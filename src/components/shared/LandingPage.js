@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { signIn } from "next-auth/react";
 
 export default function LandingPage() {
   const [formData, setFormData] = useState({
@@ -33,6 +34,10 @@ export default function LandingPage() {
       if (newIndex >= totalItems) newIndex = 0;
       return newIndex;
     });
+  };
+
+  const handleLogin = () => {
+    signIn(); // Abre o modal/página de login do NextAuth
   };
 
   return (
@@ -81,7 +86,9 @@ export default function LandingPage() {
             💡 Quer ver na prática? Faça login e conheça alguns dos meus
             sistemas públicos.
           </p>
-          <button className="cta-login-btn">🔐 Fazer Login</button>
+          <button className="cta-login-btn" onClick={handleLogin}>
+            🔐 Fazer Login
+          </button>
         </div>
       </section>
 
