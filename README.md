@@ -32,9 +32,9 @@ O portal permite que usuários façam login uma vez e acessem diversos subsistem
 ## Estrutura do Projeto
 
 - `/src/app/page.js`: Página inicial com galeria de sistemas.
-- `/src/app/bread-ecosystem/`: Subsistema de fabricação de pão.
-- `/src/app/inventory/`: Subsistema de inventário.
-- `/src/app/memory-keeper/`: Subsistema de guarda memória.
+- `/src/app/pao-da-stella-maris/`: Subsistema de fabricação de pão.
+- `/src/app/inventario/`: Subsistema de inventário.
+- `/src/app/guarda-memoria/`: Subsistema de guarda memória.
 - `/prisma/schema.prisma`: Esquema do banco de dados.
 
 ## Contribuições

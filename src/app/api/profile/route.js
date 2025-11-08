@@ -181,3 +181,29 @@ export async function GET(request) {
     return new Response("Erro ao buscar perfil", { status: 500 });
   }
 }
+
+export async function DELETE(request) {
+  const session = await getServerSession(authOptions);
+  if (!session) return new Response("Unauthorized", { status: 401 });
+
+  try {
+    // Buscar o usuário pelo email para obter o id
+    const user = await prisma.user.findUnique({
+      where: { email: session.user.email },
+    });
+    if (!user) {
+      return new Response("Usuário não encontrado", { status: 404 });
+    }
+
+    console.log("Deletando usuário:", user.id);
+    // Deletar o usuário e seus dados relacionados
+    await prisma.user.delete({
+      where: { id: user.id },
+    });
+    console.log("Usuário deletado com sucesso");
+    return new Response("Dados removidos com sucesso", { status: 200 });
+  } catch (error) {
+    console.error("Erro ao remover dados:", error);
+    return new Response("Erro ao remover dados", { status: 500 });
+  }
+}

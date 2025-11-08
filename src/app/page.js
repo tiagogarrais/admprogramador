@@ -11,23 +11,30 @@ export default function Home() {
 
   const systems = [
     {
-      name: "Ecossistema de Pão",
+      name: "Ecossistema do Pão da Stella Maris",
       description:
-        "Gerencie receitas, calculadoras e temporizadores para fabricação de pão",
+        "Obtenha a receita, acesse a calculadora e um temporizador para fabricação do nosso pão",
       image: "/bread.jpg", // Placeholder, substitua por imagem real
-      link: "/bread-ecosystem",
+      link: "/pao-da-stella-maris",
     },
     {
       name: "Inventário",
-      description: "Sistema completo de inventário e controle de estoque",
+      description: "Sistema completo para inventário de bens móveis",
       image: "/inventory.jpg", // Placeholder
-      link: "/inventory",
+      link: "/inventario",
     },
     {
       name: "Guarda Memória",
       description: "Fórum para guardar memórias de pessoas, lugares e eventos",
       image: "/memory.jpg", // Placeholder
-      link: "/memory-keeper",
+      link: "/guarda-memoria",
+    },
+    {
+      name: "Conexão Futuro",
+      description:
+        "Um Ambiente Virtual de Aprendizagem para a criação de cursos e Objetos Digitais Educacionais",
+      image: "/conexao.jpg", // Placeholder
+      link: "/conexao-futuro",
     },
   ];
 
@@ -41,6 +48,7 @@ export default function Home() {
         maxWidth: 1200,
         margin: "0 auto",
         padding: "24px",
+        paddingBottom: "4rem",
       }}
     >
       <h1>Portal de Sistemas ADM Programador</h1>
@@ -81,7 +89,6 @@ export default function Home() {
 
       <hr />
 
-      <h2>Seus Sistemas</h2>
       <div
         style={{
           display: "grid",
@@ -99,41 +106,114 @@ export default function Home() {
               padding: 16,
               textAlign: "center",
               boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+              backgroundColor: "white",
             }}
           >
-            <img
-              src={system.image}
-              alt={system.name}
-              style={{
-                width: 150,
-                height: 150,
-                objectFit: "cover",
-                borderRadius: 8,
-                marginBottom: 16,
-              }}
-              onError={(e) => {
-                e.target.src = "https://via.placeholder.com/150?text=Imagem"; // Fallback
-              }}
-            />
             <h3>{system.name}</h3>
             <p style={{ color: "#666", marginBottom: 16 }}>
               {system.description}
             </p>
-            <Link href={system.link}>
-              <button
-                style={{
-                  padding: "12px 24px",
-                  backgroundColor: "#28a745",
-                  color: "white",
-                  border: "none",
-                  borderRadius: 4,
-                  cursor: "pointer",
-                  fontSize: 16,
-                }}
+            {system.name === "Ecossistema do Pão da Stella Maris" ? (
+              <a
+                href="https://pao-da-stella-maris.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
               >
-                Acessar Sistema
-              </button>
-            </Link>
+                <button
+                  style={{
+                    padding: "12px 24px",
+                    backgroundColor: "#28a745",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 4,
+                    cursor: "pointer",
+                    fontSize: 16,
+                  }}
+                >
+                  Acessar Sistema ↗
+                </button>
+              </a>
+            ) : system.name === "Inventário" ? (
+              <a
+                href="https://inventario-tiago.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  style={{
+                    padding: "12px 24px",
+                    backgroundColor: "#28a745",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 4,
+                    cursor: "pointer",
+                    fontSize: 16,
+                  }}
+                >
+                  Acessar Sistema ↗
+                </button>
+              </a>
+            ) : system.name === "Guarda Memória" ? (
+              <a
+                href="https://www.guardamemoria.com.br/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  style={{
+                    padding: "12px 24px",
+                    backgroundColor: "#28a745",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 4,
+                    cursor: "pointer",
+                    fontSize: 16,
+                  }}
+                >
+                  Acessar Sistema ↗
+                </button>
+              </a>
+            ) : system.name === "Conexão Futuro" ? (
+              <a
+                href="https://www.conexaofuturo.com.br"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ textDecoration: "none" }}
+              >
+                <button
+                  style={{
+                    padding: "12px 24px",
+                    backgroundColor: "#28a745",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 4,
+                    cursor: "pointer",
+                    fontSize: 16,
+                  }}
+                >
+                  Acessar Sistema ↗
+                </button>
+              </a>
+            ) : (
+              <Link href={system.link}>
+                <button
+                  style={{
+                    padding: "12px 24px",
+                    backgroundColor: "#28a745",
+                    color: "white",
+                    border: "none",
+                    borderRadius: 4,
+                    cursor: "pointer",
+                    fontSize: 16,
+                  }}
+                >
+                  Acessar Sistema
+                </button>
+              </Link>
+            )}
           </div>
         ))}
       </div>

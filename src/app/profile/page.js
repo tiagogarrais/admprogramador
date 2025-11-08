@@ -47,7 +47,7 @@ export default function Profile() {
         if (res.ok) {
           const data = await res.json();
           setFormData({
-            fullName: data.user.fullName || session.user.name || "",
+            fullName: data.user.fullName || "",
             birthDate: data.user.birthDate || "",
             cpf: data.user.cpf || "",
             whatsapp: data.user.whatsapp || "",
@@ -71,7 +71,7 @@ export default function Profile() {
         console.error("Erro ao buscar perfil:", error);
         // Fallback para dados da sessão
         setFormData({
-          fullName: session.user.fullName || session.user.name || "",
+          fullName: session.user.fullName || "",
           birthDate: session.user.birthDate
             ? new Date(session.user.birthDate).toISOString().split("T")[0]
             : "",
@@ -123,6 +123,7 @@ export default function Profile() {
         maxWidth: 1200,
         margin: "0 auto",
         padding: "24px",
+        paddingBottom: "4rem",
         fontFamily: "Arial, sans-serif",
       }}
     >
@@ -295,6 +296,46 @@ export default function Profile() {
           }}
         >
           {loading ? "Salvando..." : "Salvar Perfil"}
+        </button>
+        <button
+          type="button"
+          onClick={async () => {
+            if (
+              confirm(
+                "Tem certeza de que deseja remover todos os seus dados? Esta ação não pode ser desfeita."
+              )
+            ) {
+              try {
+                const res = await fetch("/api/profile", {
+                  method: "DELETE",
+                });
+                if (res.ok) {
+                  alert(
+                    "Dados removidos com sucesso. Você será redirecionado."
+                  );
+                  // Logout e redirecionar
+                  await fetch("/api/auth/signout", { method: "POST" });
+                  router.push("/");
+                } else {
+                  alert("Erro ao remover dados.");
+                }
+              } catch (error) {
+                console.error("Erro:", error);
+                alert("Erro ao remover dados.");
+              }
+            }
+          }}
+          style={{
+            padding: 12,
+            backgroundColor: "#dc3545",
+            color: "white",
+            border: "none",
+            borderRadius: 4,
+            cursor: "pointer",
+            marginLeft: 10,
+          }}
+        >
+          Remover meus dados
         </button>
       </form>
     </div>

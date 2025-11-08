@@ -10,9 +10,9 @@
 src/components/
 ├── shared/                    # Componentes globais
 │   └── LandingPage.js         # Página inicial completa (landing page)
-├── bread-ecosystem/           # Componentes do sistema de pão (futuro)
-├── inventory/                 # Componentes do sistema de inventário (futuro)
-└── memory-keeper/             # Componentes do sistema de memórias (futuro)
+├── pao-da-stella-maris/           # Componentes do sistema de pão (futuro)
+├── inventario/                 # Componentes do sistema de inventário (futuro)
+└── guarda-memoria/             # Componentes do sistema de memórias (futuro)
 ```
 
 ## Decisão Arquitetural
