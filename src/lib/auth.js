@@ -3,7 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import EmailProvider from "next-auth/providers/email";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/lib/prisma";
-import { sendVerificationRequest } from "@/lib/email";
+import { sendVerificationRequest, sendLoginNotification } from "@/lib/email";
 
 export const authOptions = {
   adapter: PrismaAdapter(prisma), // Usar adapter padrão temporariamente
@@ -42,6 +42,32 @@ export const authOptions = {
           userId: user?.id,
           userIdType: typeof user?.id,
         });
+
+        // Enviar notificação se não for o administrador
+        const adminEmail = process.env.EMAIL_FROM;
+        if (user?.email && user.email !== adminEmail) {
+          try {
+            await sendLoginNotification({
+              userEmail: user.email,
+              provider: {
+                server: {
+                  host: process.env.EMAIL_SERVER_HOST,
+                  port: process.env.EMAIL_SERVER_PORT,
+                  auth: {
+                    user: process.env.EMAIL_SERVER_USER,
+                    pass: process.env.EMAIL_SERVER_PASS,
+                  },
+                },
+                from: process.env.EMAIL_FROM,
+              },
+            });
+            console.log(`Notificação de login enviada para ${adminEmail} sobre o login de ${user.email}`);
+          } catch (emailError) {
+            console.error("Erro ao enviar notificação de login:", emailError);
+            // Não bloquear o login por erro no e-mail
+          }
+        }
+
         return true;
       } catch (error) {
         console.error("Erro no callback signIn:", error);
